@@ -65,6 +65,10 @@ view: users {
     type: string
     sql: ${TABLE}.traffic_source ;;
   }
+  dimension: is_email_source {
+    type: yesno
+    sql: ${traffic_source} = "Email" ;;
+  }
   measure: count {
     type: count
     drill_fields: [detail*]
@@ -73,13 +77,13 @@ view: users {
   # ----- Sets of fields for drilling ------
   set: detail {
     fields: [
-	id,
-	last_name,
-	first_name,
-	order_items.count,
-	orders.count,
-	events.count
-	]
+  id,
+  last_name,
+  first_name,
+  order_items.count,
+  orders.count,
+  events.count
+  ]
   }
 
 }
